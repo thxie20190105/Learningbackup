@@ -58,16 +58,13 @@ public class Client {
         String connectString = "192.168.17.17:2181,192.168.17.18:2181,192.168.17.19:2181,192.168.17.20:2181";
         int sessionTimeout = 2000;
 
-        zooKeeper = new ZooKeeper(connectString, sessionTimeout, new Watcher() {
-            @Override
-            public void process(WatchedEvent event) {
-                try {
-                    Client.getChlidren();
-                } catch (KeeperException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        zooKeeper = new ZooKeeper(connectString, sessionTimeout, event -> {
+            try {
+                Client.getChlidren();
+            } catch (KeeperException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
     }
