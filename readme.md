@@ -1,23 +1,11 @@
-maven
+包括主流框架的基本使用方式
+SpringMVC
+SpringAop
+SpringInterceptor
 
-springboot
+Mybatis
+MybatisGenerator
 
-springmvc
-
-
-
-mybatis
-
-mybatis逆向工程
-
-
-
-redis
-
-
-
+redis-spring-data-redis
+dubbo
 quartz
-
-
-
-基础框架搭建-基本流程调用
