@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdubbo.mapper.DEmpMapper">
+    <resultMap id="BaseResultMap" type="com.tdubbo.entity.DEmp">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="dep_id" jdbcType="INTEGER" property="depId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="age" jdbcType="VARCHAR" property="age"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="bank_no" jdbcType="VARCHAR" property="bankNo"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+    </resultMap>
+
+    <select id="get" parameterType="map" resultMap="BaseResultMap">
+        select d.id,
+        d.name,
+        d.dep_id,
+        d.age,
+        d.gender,
+        d.bank_no,
+        d.bank_name
+        from d_emp d
+        <where>
+            <if test="id!=0  ">
+                and d.id = #{id}
+            </if>
+            <if test="name!=null and name!='' ">
+                and d.name = #{name}
+            </if>
+            <if test="dep_id!=null and dep_id!='' ">
+                and d.dep_id = #{name}
+            </if>
+        </where>
+
+    </select>
+</mapper>
