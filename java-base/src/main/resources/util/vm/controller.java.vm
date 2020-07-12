@@ -1,0 +1,71 @@
+package ${package.Controller};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import ${package.Entity}.${entity};
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+    #if(${superControllerClass})
+    public class ${table.controllerName} extends ${superControllerClass} {
+    #else
+    public class ${table.controllerName} {
+    #end
+
+
+
+/**
+* 查询数据
+*/
+@RequestMapping("/select")
+public void select( ){
+}
+
+
+/**
+* 添加数据
+*/
+@RequestMapping(value = "/add", method = RequestMethod.POST)
+public void add( ){
+}
+
+
+/**
+* 更新数据
+*/
+@RequestMapping(value = "/update", method = RequestMethod.POST)
+public void update(){
+}
+
+
+/**
+* 删除数据
+*/
+@RequestMapping(value = "/del", method = RequestMethod.POST)
+public void deleteItems(){
+}
+
+    }
+
+#end
