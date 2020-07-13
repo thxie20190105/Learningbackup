@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdubbo.mapper.DDepMapper">
+    <resultMap id="BaseResultMap" type="com.tdubbo.entity.DDep">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+    </resultMap>
+    <select id="get" parameterType="java.util.Map" resultType="com.tdubbo.entity.DDep">
+        select d.id,
+        d.name,
+        d.level
+        from d_dep d
+        <where>
+            <if test="id!=0">
+                and d.id = #{id}
+            </if>
+            <if test="name!=null and name!=''">
+                and d.name = #{name}
+            </if>
+            <if test="level!=null and level!=''">
+                and d.name = #{name}
+            </if>
+        </where>
+    </select>
+
+
+    <delete id="delById" parameterType="integer">
+        delete d
+        from d_dep d
+        where d.id = #{id}
+    </delete>
+
+    <insert id="createDep" parameterType="com.tdubbo.entity.DDep">
+        insert into d_dep (id, name, level)
+        values (null, #{name}, #{level})
+
+    </insert>
+
+    <update id="updateById" parameterType="com.tdubbo.entity.DDep">
+        update d_dep
+        set name = #{name},
+            level=#{level}
+        where id = #{id}
+    </update>
+    <insert id="createLog">
+        insert into d_log (id)
+        values (null);
+
+    </insert>
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdubbo.mapper.DTransMapper">
+    <resultMap id="BaseResultMap" type="com.tdubbo.entity.DTrans">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="amt" jdbcType="VARCHAR" property="amt"/>
+        <result column="pay_id" jdbcType="INTEGER" property="payId"/>
+        <result column="pay_name" jdbcType="VARCHAR" property="payName"/>
+        <result column="pay_bank" jdbcType="VARCHAR" property="payBank"/>
+        <result column="pay_bank_no" jdbcType="VARCHAR" property="payBankNo"/>
+        <result column="pay_bank_addr" jdbcType="VARCHAR" property="payBankAddr"/>
+        <result column="rec_id" jdbcType="INTEGER" property="recId"/>
+        <result column="rec_name" jdbcType="VARCHAR" property="recName"/>
+        <result column="rec_no" jdbcType="VARCHAR" property="recNo"/>
+        <result column="rec_bank" jdbcType="VARCHAR" property="recBank"/>
+        <result column="rec_bank_no" jdbcType="VARCHAR" property="recBankNo"/>
+        <result column="rec_bank_addr" jdbcType="VARCHAR" property="recBankAddr"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_date" jdbcType="DATE" property="createDate"/>
+        <result column="create_time" jdbcType="TIME" property="createTime"/>
+        <result column="trans_date" jdbcType="DATE" property="transDate"/>
+        <result column="trans_no" jdbcType="VARCHAR" property="transNo"/>
+        <result column="trans_batch" jdbcType="VARCHAR" property="transBatch"/>
+        <result column="trans_status" jdbcType="VARCHAR" property="transStatus"/>
+        <result column="currency" jdbcType="VARCHAR" property="currency"/>
+        <result column="lock_no" jdbcType="VARCHAR" property="lockNo"/>
+        <result column="lock_status" jdbcType="VARCHAR" property="lockStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, amt, pay_id, pay_name, pay_bank, pay_bank_no, pay_bank_addr, rec_id, rec_name,
+    rec_no, rec_bank, rec_bank_no, rec_bank_addr, remark, create_date, create_time, trans_date, 
+    trans_no, trans_batch, trans_status, currency, lock_no, lock_status
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from d_trans
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from d_trans
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.tdubbo.entity.DTrans">
+        insert into d_trans (id, amt, pay_id,
+                             pay_name, pay_bank, pay_bank_no,
+                             pay_bank_addr, rec_id, rec_name,
+                             rec_no, rec_bank, rec_bank_no,
+                             rec_bank_addr, remark, create_date,
+                             create_time, trans_date, trans_no,
+                             trans_batch, trans_status, currency,
+                             lock_no, lock_status)
+        values (#{id,jdbcType=INTEGER}, #{amt,jdbcType=VARCHAR}, #{payId,jdbcType=INTEGER},
+                #{payName,jdbcType=VARCHAR}, #{payBank,jdbcType=VARCHAR}, #{payBankNo,jdbcType=VARCHAR},
+                #{payBankAddr,jdbcType=VARCHAR}, #{recId,jdbcType=INTEGER}, #{recName,jdbcType=VARCHAR},
+                #{recNo,jdbcType=VARCHAR}, #{recBank,jdbcType=VARCHAR}, #{recBankNo,jdbcType=VARCHAR},
+                #{recBankAddr,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE},
+                #{createTime,jdbcType=TIME}, #{transDate,jdbcType=DATE}, #{transNo,jdbcType=VARCHAR},
+                #{transBatch,jdbcType=VARCHAR}, #{transStatus,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR},
+                #{lockNo,jdbcType=VARCHAR}, #{lockStatus,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.tdubbo.entity.DTrans">
+        insert into d_trans
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="amt != null">
+                amt,
+            </if>
+            <if test="payId != null">
+                pay_id,
+            </if>
+            <if test="payName != null">
+                pay_name,
+            </if>
+            <if test="payBank != null">
+                pay_bank,
+            </if>
+            <if test="payBankNo != null">
+                pay_bank_no,
+            </if>
+            <if test="payBankAddr != null">
+                pay_bank_addr,
+            </if>
+            <if test="recId != null">
+                rec_id,
+            </if>
+            <if test="recName != null">
+                rec_name,
+            </if>
+            <if test="recNo != null">
+                rec_no,
+            </if>
+            <if test="recBank != null">
+                rec_bank,
+            </if>
+            <if test="recBankNo != null">
+                rec_bank_no,
+            </if>
+            <if test="recBankAddr != null">
+                rec_bank_addr,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="transDate != null">
+                trans_date,
+            </if>
+            <if test="transNo != null">
+                trans_no,
+            </if>
+            <if test="transBatch != null">
+                trans_batch,
+            </if>
+            <if test="transStatus != null">
+                trans_status,
+            </if>
+            <if test="currency != null">
+                currency,
+            </if>
+            <if test="lockNo != null">
+                lock_no,
+            </if>
+            <if test="lockStatus != null">
+                lock_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="amt != null">
+                #{amt,jdbcType=VARCHAR},
+            </if>
+            <if test="payId != null">
+                #{payId,jdbcType=INTEGER},
+            </if>
+            <if test="payName != null">
+                #{payName,jdbcType=VARCHAR},
+            </if>
+            <if test="payBank != null">
+                #{payBank,jdbcType=VARCHAR},
+            </if>
+            <if test="payBankNo != null">
+                #{payBankNo,jdbcType=VARCHAR},
+            </if>
+            <if test="payBankAddr != null">
+                #{payBankAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="recId != null">
+                #{recId,jdbcType=INTEGER},
+            </if>
+            <if test="recName != null">
+                #{recName,jdbcType=VARCHAR},
+            </if>
+            <if test="recNo != null">
+                #{recNo,jdbcType=VARCHAR},
+            </if>
+            <if test="recBank != null">
+                #{recBank,jdbcType=VARCHAR},
+            </if>
+            <if test="recBankNo != null">
+                #{recBankNo,jdbcType=VARCHAR},
+            </if>
+            <if test="recBankAddr != null">
+                #{recBankAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIME},
+            </if>
+            <if test="transDate != null">
+                #{transDate,jdbcType=DATE},
+            </if>
+            <if test="transNo != null">
+                #{transNo,jdbcType=VARCHAR},
+            </if>
+            <if test="transBatch != null">
+                #{transBatch,jdbcType=VARCHAR},
+            </if>
+            <if test="transStatus != null">
+                #{transStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="currency != null">
+                #{currency,jdbcType=VARCHAR},
+            </if>
+            <if test="lockNo != null">
+                #{lockNo,jdbcType=VARCHAR},
+            </if>
+            <if test="lockStatus != null">
+                #{lockStatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tdubbo.entity.DTrans">
+        update d_trans
+        <set>
+            <if test="amt != null">
+                amt = #{amt,jdbcType=VARCHAR},
+            </if>
+            <if test="payId != null">
+                pay_id = #{payId,jdbcType=INTEGER},
+            </if>
+            <if test="payName != null">
+                pay_name = #{payName,jdbcType=VARCHAR},
+            </if>
+            <if test="payBank != null">
+                pay_bank = #{payBank,jdbcType=VARCHAR},
+            </if>
+            <if test="payBankNo != null">
+                pay_bank_no = #{payBankNo,jdbcType=VARCHAR},
+            </if>
+            <if test="payBankAddr != null">
+                pay_bank_addr = #{payBankAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="recId != null">
+                rec_id = #{recId,jdbcType=INTEGER},
+            </if>
+            <if test="recName != null">
+                rec_name = #{recName,jdbcType=VARCHAR},
+            </if>
+            <if test="recNo != null">
+                rec_no = #{recNo,jdbcType=VARCHAR},
+            </if>
+            <if test="recBank != null">
+                rec_bank = #{recBank,jdbcType=VARCHAR},
+            </if>
+            <if test="recBankNo != null">
+                rec_bank_no = #{recBankNo,jdbcType=VARCHAR},
+            </if>
+            <if test="recBankAddr != null">
+                rec_bank_addr = #{recBankAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=DATE},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIME},
+            </if>
+            <if test="transDate != null">
+                trans_date = #{transDate,jdbcType=DATE},
+            </if>
+            <if test="transNo != null">
+                trans_no = #{transNo,jdbcType=VARCHAR},
+            </if>
+            <if test="transBatch != null">
+                trans_batch = #{transBatch,jdbcType=VARCHAR},
+            </if>
+            <if test="transStatus != null">
+                trans_status = #{transStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="currency != null">
+                currency = #{currency,jdbcType=VARCHAR},
+            </if>
+            <if test="lockNo != null">
+                lock_no = #{lockNo,jdbcType=VARCHAR},
+            </if>
+            <if test="lockStatus != null">
+                lock_status = #{lockStatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tdubbo.entity.DTrans">
+        update d_trans
+        set amt           = #{amt,jdbcType=VARCHAR},
+            pay_id        = #{payId,jdbcType=INTEGER},
+            pay_name      = #{payName,jdbcType=VARCHAR},
+            pay_bank      = #{payBank,jdbcType=VARCHAR},
+            pay_bank_no   = #{payBankNo,jdbcType=VARCHAR},
+            pay_bank_addr = #{payBankAddr,jdbcType=VARCHAR},
+            rec_id        = #{recId,jdbcType=INTEGER},
+            rec_name      = #{recName,jdbcType=VARCHAR},
+            rec_no        = #{recNo,jdbcType=VARCHAR},
+            rec_bank      = #{recBank,jdbcType=VARCHAR},
+            rec_bank_no   = #{recBankNo,jdbcType=VARCHAR},
+            rec_bank_addr = #{recBankAddr,jdbcType=VARCHAR},
+            remark        = #{remark,jdbcType=VARCHAR},
+            create_date   = #{createDate,jdbcType=DATE},
+            create_time   = #{createTime,jdbcType=TIME},
+            trans_date    = #{transDate,jdbcType=DATE},
+            trans_no      = #{transNo,jdbcType=VARCHAR},
+            trans_batch   = #{transBatch,jdbcType=VARCHAR},
+            trans_status  = #{transStatus,jdbcType=VARCHAR},
+            currency      = #{currency,jdbcType=VARCHAR},
+            lock_no       = #{lockNo,jdbcType=VARCHAR},
+            lock_status   = #{lockStatus,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
